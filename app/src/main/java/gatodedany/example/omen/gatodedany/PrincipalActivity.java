@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PrincipalActivity extends AppCompatActivity implements View.OnClickListener{ //Se agrega el Click
 
@@ -97,9 +98,37 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         return false;
     }
 
-    private void ganojug1(){} //metodo para saber si gano el jugador 1
+    private void ganojug1(){
+        jug1puntos++;
+        Toast.makeText(this, "!Jugador 1 gano!", Toast.LENGTH_SHORT).show();
+        actualizarPuntos(); //Se actualizan sus puntos
+        reiniciarPuntos(); //Se reinician sus puntos
+    } //metodo para saber si gano el jugador 1
 
-    private void ganojug2(){}
+    private void ganojug2(){
+        jug2puntos++;
+        Toast.makeText(this, "!Jugador 2 gano!", Toast.LENGTH_SHORT).show();
+        actualizarPuntos(); //Se actualizan sus puntos
+        reiniciarPuntos(); //se reinician sus puntos
+    } //metodo para saber si gan el jugador 2
 
-    private void draw(){}
+    private void draw(){
+        Toast.makeText(this, "!Nadie gano!", Toast.LENGTH_SHORT).show();
+        reiniciarPuntos(); //Nadie gana
+    } //metodo para dibujar las veces ganadas
+
+    private void actualizarPuntos(){
+        txtvjug1.setText("Jugador 1: " + jug1puntos); //se suman los puntos al jugador 1
+        txtvjug2.setText("Jugador2" + jug2puntos); //se suman los puntos al jugador 2
+    }
+
+    private void reiniciarPuntos(){ //Se reinician los puntos
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++){
+                botones[i][j].setText("");
+            }
+        }
+        cuenta = 0;
+        turnojug1 = true;
+    }
 }

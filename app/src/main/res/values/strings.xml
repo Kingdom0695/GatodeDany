@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GatodeDany</string>
+    <string name="Jugador_1">Jugador 1: </string>
+    <string name="Jugador_2">Jugador 2: </string>
 </resources>
