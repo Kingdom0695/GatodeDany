@@ -51,5 +51,55 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         }
 
         cuenta++; //Aumentar la cuenta
+
+        if (ganador()){ //Checa la cuenta del jugador 1 y nos dice si gano y aumenta su contador
+            if (turnojug1){
+                ganojug1();
+            }else {
+                ganojug2(); //De lo contrario gana el jugador 2
+            }
+        } else if (cuenta == 9){
+            draw();
+        }else{
+            turnojug1 = !turnojug1; //Si es que no empatan
+        }
     }
+
+    private boolean ganador(){ //Metodo para saber el ganador
+        String[][] field = new String[3][3]; //Matriz de las jugadas
+
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++){
+                field[i][j] = botones[i][j].getText().toString(); //Convierte el texto a string
+            }
+        }
+
+        for (int i = 0; i < 3; i++){ //Verifica cada uno de los campos de las filas
+            if (field[i][0].equals(field[i][1]) && field[i][0].equals(field[i][2]) && !field[i][0].equals("")){
+                return true;
+            }
+        }
+
+        for (int i = 0; i < 3; i++){ //Verifica cada uno de los campos de las columnas
+            if (field[0][i].equals(field[1][i]) && field[0][i].equals(field[2][i]) && !field[0][i].equals("")){
+                return true;
+            }
+        }
+
+        if (field[0][0].equals(field[1][1]) && field[0][0].equals(field[2][2]) && !field[0][0].equals("")){
+            return true;
+        }
+
+        if (field[0][2].equals(field[1][1]) && field[0][2].equals(field[2][0]) && !field[0][2].equals("")){
+            return true;
+        }
+
+        return false;
+    }
+
+    private void ganojug1(){}
+
+    private void ganojug2(){}
+
+    private void draw(){}
 }
