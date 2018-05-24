@@ -34,6 +34,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         btnreinicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { //Creacion del metodo para clicks
+                reiniciarElJuego();
 
             }
         });
@@ -122,6 +123,27 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         txtvjug2.setText("Jugador2" + jug2puntos); //se suman los puntos al jugador 2
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("cuenta", cuenta);
+        outState.putInt("jug1puntos", jug1puntos);
+        outState.putInt("jug2puntos", jug2puntos);
+        outState.putBoolean("turnojug1", turnojug1);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        cuenta = savedInstanceState.getInt("cuenta");
+        jug1puntos = savedInstanceState.getInt("jug1puntos");
+        jug2puntos = savedInstanceState.getInt("jug2puntos");
+        turnojug1 = savedInstanceState.getBoolean("turnojug1");
+
+    }
+
     private void reiniciarPuntos(){ //Se reinician los puntos
         for (int i = 0; i < 3; i++){
             for (int j = 0; j < 3; j++){
@@ -130,5 +152,12 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         }
         cuenta = 0;
         turnojug1 = true;
+    }
+
+    private void reiniciarElJuego(){ //Metodo para el reinicio del juego
+        jug1puntos = 0;
+        jug2puntos = 0;
+        actualizarPuntos();
+        reiniciarPuntos();
     }
 }
