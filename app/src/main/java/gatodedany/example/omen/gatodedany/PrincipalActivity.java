@@ -97,7 +97,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         return false;
     }
 
-    private void ganojug1(){}
+    private void ganojug1(){} //metodo para saber si gano el jugador 1
 
     private void ganojug2(){}
 
